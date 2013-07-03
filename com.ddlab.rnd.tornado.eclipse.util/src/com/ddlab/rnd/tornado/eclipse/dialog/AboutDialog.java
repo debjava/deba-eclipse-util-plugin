@@ -112,7 +112,7 @@ public class AboutDialog extends Dialog {
 		styledText.append("\n");
 		styledText.append("* System view and Kill a Process Id ");
 		styledText.append("\n");
-		styledText.append("* Prefrences for Utilities ");
+		styledText.append("* Preferences for Utilities ");
 		styledText.append("\n\n\n");
 		styledText.append("Base Version: 1.0.0.0");
 		styledText.append("\n");
