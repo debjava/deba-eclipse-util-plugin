@@ -1,0 +1,67 @@
+<!--
+	- Author : Debadatta Mishra (PIKU)
+	- Script to build plugin
+-->
+<project name="screenshotutil" basedir="." default="createJar">
+
+	<property name="eclipse.plugin.dir" 				value="E:/devsoft/editors/eclipse-ganemede-3.4/plugins" />
+	<property name="src.dir" 							value="${basedir}/src" />
+	<property name="dist.dir" 							value="${basedir}/dist" />
+	<property name="build.dir" 							value="${basedir}/build" />
+	<property name="icons.dir" 							value="${basedir}/icons" />
+	<property name="plugins.dir" 						value="${basedir}/plugins" />
+	<property name="metainf.dir" 						value="${basedir}/META-INF" />
+	<property name="plugin.xml.file" 					value="${basedir}/plugin.xml" />
+	<property name="version.no" 						value="1.0.0" />
+
+	<path id="pluginClasspath">
+		<fileset dir="${eclipse.plugin.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${plugins.dir}" />
+	</target>
+
+	<target name="init">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<delete dir="${plugins.dir}" />
+		<mkdir dir="${plugins.dir}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac debug="on"  destdir="${build.dir}" source="1.6" target="1.6"
+			srcdir="${src.dir}" classpathref="pluginClasspath"
+		includeantruntime="true"/>
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" includes="**/*.jpg,**/*.png,**/*.gif"/>
+		</copy>
+
+	</target>
+
+	<target name="copyAll" depends="compile">
+		<copydir dest="${build.dir}/META-INF" src="${metainf.dir}"/>
+		<copydir dest="${build.dir}/icons" src="${icons.dir}"/>
+		<copy file="${plugin.xml.file}" todir="${build.dir}" />
+		<tstamp>
+			<format property="TODAY" pattern="yyyyMMddHHmm" />
+		</tstamp>
+		<replace file="${build.dir}/META-INF/MANIFEST.MF" token="1.0.0.qualifier" value="${version.no}.${TODAY}">
+		</replace>
+	</target>
+
+	<target name="createJar" depends="copyAll">
+		<jar destfile="${plugins.dir}/${ant.project.name}_${version.no}.${TODAY}.jar" 
+			basedir="${build.dir}" manifest="${build.dir}/META-INF/MANIFEST.MF">
+		</jar>
+		<zip destfile="${dist.dir}/${ant.project.name}.zip" basedir="${plugins.dir}">
+		</zip>
+	</target>
+
+</project>
