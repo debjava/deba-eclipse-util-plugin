@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Util
+Bundle-SymbolicName: com.ddlab.rnd.tornado.eclipse.util; singleton:=true
+Bundle-Version: 1.0.0.201307051837
+Bundle-Activator: com.ddlab.rnd.tornado.eclipse.util.Activator
+Bundle-Vendor: DDLAB
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.ui;bundle-version="3.4.0",
+ org.eclipse.core.runtime;bundle-version="3.4.0",
+ org.eclipse.core.resources;bundle-version="3.4.0",
+ org.eclipse.debug.core;bundle-version="3.4.0",
+ org.eclipse.debug.ui;bundle-version="3.4.0",
+ org.eclipse.ui.externaltools;bundle-version="3.2.0"
+Bundle-ClassPath: lib/currportutil.jar,
+ .

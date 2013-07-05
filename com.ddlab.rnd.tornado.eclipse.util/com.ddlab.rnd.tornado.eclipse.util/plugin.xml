@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Deba Util"
+            id="com.ddlab.rnd.tornado">
+      </category>
+      <view
+            name="System View"
+            icon="icons/wndowsIcon16.png"
+            category="com.ddlab.rnd.tornado"
+            class="com.ddlab.rnd.tornado.eclipse.view.SystemView"
+            id="com.ddlab.rnd.tornado.eclipse.view.SystemView">
+      </view>
+   </extension>
+    <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IResource"
+            nameFilter="*"
+            id="commandopener.contribution1">
+         <action
+               label="Open in Windows Command Prompt"
+               icon="icons/Command-Prompt24x.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.CommandOpenAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="folderopener.addRemoveNatureAction">
+         </action>
+         <action
+               label="Open Command in Eclipse Console"
+               icon="icons/sample.gif"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.EclipseConsoleAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="folderopener.addRemoveNatureAction">
+         </action>
+        <action
+               label="Copy Path (Unix Style)"
+               icon="icons/Paste-icon24xLinux.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.UnixStyleCopyAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="filepathcopy.contribution2">
+         </action>
+         <action
+               label="Copy Path (Windows Style)"
+               icon="icons/Paste-icon24xWindows.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.WindowsStyleCopyAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="filepathcopy.contribution2">
+         </action>
+         <action
+               label="Open in Windows Explorer"
+               icon="icons/Windows-icon24x.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.FolderOpenAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="folderopener1.FolderOpenAction">
+         </action>
+         <!--
+         <action
+               label="Send To Desktop"
+               icon="icons/desktop-icon16.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.CopytoDesktopAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="folderopener1.FolderOpenAction">
+         </action>
+         -->
+      </objectContribution>
+   </extension>
+     <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*"
+            id="commandopener.contribution1">
+         <action
+               label="Send To Desktop"
+               icon="icons/desktop-icon16.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.CopytoDesktopAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="folderopener1.FolderOpenAction">
+         </action>
+         <action
+               label="Zip To Desktop"
+               icon="icons/zip24.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.ZipFilesAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="folderopener1.FolderOpenAction">
+         </action>
+      </objectContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Full Screen Action Set"
+            visible="true"
+            id="tornado.actionSet">
+         <action
+               label="&amp;Full Screen"
+               icon="icons/fullscreen24.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.FullScreenAction"
+               tooltip="Click for Full Screen"
+               menubarPath="tornadoMenu/tornadoGroup"
+               toolbarPath="tornadoGroup"
+               id="com.ddlab.rnd.tornado.eclipse.util.actions.FullScreenAction">
+         </action>
+      </actionSet>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="My Command Category"
+            id="fullscreen.commands.categoryId">
+      </category>
+      <category
+            id="fullscreen.commands.onlyEscId"
+            name="Escapse command">
+      </category>
+      <command
+            name="Key Command"
+            categoryId="fullscreen.commands.categoryId"
+            id="fullscreen.commands.fullCommandId">
+      </command>
+      <command
+            id="fullscreen.commands.escCmdId"
+            name="Escape Command">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="fullscreen.commands.fullCommandId"
+            class="com.ddlab.rnd.tornado.eclipse.handlers.KeyHandler">
+      </handler>
+      <handler
+            commandId="fullscreen.commands.escCmdId"
+            class="com.ddlab.rnd.tornado.eclipse.handlers.EscapeHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="fullscreen.commands.fullCommandId"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+Tab"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+      		commandId="fullscreen.commands.escCmdId"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="ESC">
+      </key>
+   </extension>
+   
+   <extension
+    point = "org.eclipse.ui.viewActions">
+      <viewContribution 
+         id="windows.command.id" 
+         targetID="org.eclipse.ui.console.ConsoleView">        
+	   <action id="windows.console.action.id" 
+              label="Open Command Prompt" 
+	      menubarPath="additions"
+              toolbarPath="additions" 
+              icon="icons/cmd16.png" 
+              tooltip="Open Windows Command Prompt" 
+              class="com.ddlab.rnd.tornado.eclipse.handlers.CommandActionDelegate">
+	   </action>
+      </viewContribution>
+ </extension>
+ 
+ <extension
+    point = "org.eclipse.ui.viewActions">
+      <viewContribution 
+         id="eclipse.console.cmd.id" 
+         targetID="org.eclipse.ui.console.ConsoleView">        
+	   <action id="eclipse.console.action.id" 
+              label="Open Command in Eclipse Console" 
+	      menubarPath="additions"
+              toolbarPath="additions" 
+              icon="icons/cmd16.ico" 
+              tooltip="Open Command in Eclipse Console" 
+              class="com.ddlab.rnd.tornado.eclipse.handlers.EclipseConsoleActionDelegate">
+	   </action>
+      </viewContribution>
+ </extension>
+   
+  <extension
+     point="org.eclipse.ui.actionSets">
+     <actionSet
+        label="My Custom Help Action Set"
+        visible="true"
+        id="com.ddlab.rnd.tornado.eclipse.utilActionId">
+     <menu
+           label="CustomHelp"
+           id="CustomHelpMenu">
+        <separator
+              name="CustomHelpGroup">
+        </separator>
+     </menu>
+     <action
+           class="com.ddlab.rnd.tornado.eclipse.util.actions.AboutMenuAction"
+           icon="icons/about-icon24.png"
+           id="com.ddlab.rnd.tornado.eclipse.util.actions.AboutMenuAction"
+           label="About Deba Eclipse Util Plugin"
+           menubarPath="help/CustomHelpGroup"/>
+    </actionSet>
+   </extension>
+   
+   <extension point="org.eclipse.ui.preferencePages">
+ 	<page id="DebaUtilPlugin"
+ 		name="DebaUtilPlugin"
+    		class="com.ddlab.rnd.tornado.eclipse.util.DebaPluginPreferencePage">
+   	</page>
+</extension>
+   
+</plugin>
