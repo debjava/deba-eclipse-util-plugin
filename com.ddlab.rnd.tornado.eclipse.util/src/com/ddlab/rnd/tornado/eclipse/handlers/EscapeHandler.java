@@ -6,10 +6,14 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import com.ddlab.rnd.tornado.eclipse.util.PluginUtil;
 import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil;
+import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil4;
 
-/**This class is used as Key Binding Handler to bring back the maximized window
+/**
+ * This class is used as Key Binding Handler to bring back the maximized window
  * to normal mode.
+ * 
  * @author <a href="mailto:debadatta.mishra@gmail.com"> Debadatta Mishra (PIKU)
  * @since 2013
  * 
@@ -30,7 +34,10 @@ public class EscapeHandler extends AbstractHandler {
 		 */
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
-		ScreenUtil.normalize(window);
+		if (PluginUtil.getEclipseVersion() > 3.7)
+			ScreenUtil4.normalize(window);
+		else
+			ScreenUtil.normalize(window);
 		return null;
 	}
 }

@@ -5,7 +5,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
+import com.ddlab.rnd.tornado.eclipse.util.PluginUtil;
 import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil;
+import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil4;
 
 /**
  * This class is used to maximize the Eclipse window to increase the
@@ -56,7 +58,10 @@ public class FullScreenAction implements IWorkbenchWindowActionDelegate {
 	 */
 	@Override
 	public void run(IAction action) {
-		ScreenUtil.perform(window);
+		if (PluginUtil.getEclipseVersion() > 3.7)
+			ScreenUtil4.perform(window);
+		else
+			ScreenUtil.perform(window);
 	}
 
 	/*

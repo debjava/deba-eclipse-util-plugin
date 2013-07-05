@@ -6,7 +6,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import com.ddlab.rnd.tornado.eclipse.util.PluginUtil;
 import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil;
+import com.ddlab.rnd.tornado.eclipse.util.ScreenUtil4;
 
 /**
  * This class is used for key binding for the full screen functionality. This
@@ -33,7 +35,10 @@ public class KeyHandler extends AbstractHandler {
 		 */
 		IWorkbenchWindow window = HandlerUtil
 				.getActiveWorkbenchWindowChecked(event);
-		ScreenUtil.perform(window);
+		if (PluginUtil.getEclipseVersion() > 3.7)
+			ScreenUtil4.perform(window);
+		else
+			ScreenUtil.perform(window);
 		return null;
 	}
 }

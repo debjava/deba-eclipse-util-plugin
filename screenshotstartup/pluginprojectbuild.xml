@@ -4,7 +4,9 @@
 -->
 <project name="screenshotutil" basedir="." default="createJar">
 
-	<property name="eclipse.plugin.dir" 				value="E:/devsoft/editors/eclipse-ganemede-3.4/plugins" />
+	<!-- Set the path of your Eclipse home directory below -->
+	<property name="eclipse.home.dir" 					value="E:/devsoft/editors/eclipse-ganemede-3.4" />
+	<property name="eclipse.plugin.dir" 				value="${eclipse.home.dir}/plugins" />
 	<property name="src.dir" 							value="${basedir}/src" />
 	<property name="dist.dir" 							value="${basedir}/dist" />
 	<property name="build.dir" 							value="${basedir}/build" />
@@ -14,18 +16,21 @@
 	<property name="plugin.xml.file" 					value="${basedir}/plugin.xml" />
 	<property name="version.no" 						value="1.0.0" />
 
+	<!-- Set the path -->
 	<path id="pluginClasspath">
 		<fileset dir="${eclipse.plugin.dir}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
 
+	<!-- For clen up operation -->
 	<target name="clean">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 		<delete dir="${plugins.dir}" />
 	</target>
 
+	<!-- Create the necessary directories -->
 	<target name="init">
 		<delete dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
@@ -35,6 +40,7 @@
 		<mkdir dir="${plugins.dir}" />
 	</target>
 
+	<!-- Compile the source code -->
 	<target name="compile" depends="init">
 		<javac debug="on"  destdir="${build.dir}" source="1.6" target="1.6"
 			srcdir="${src.dir}" classpathref="pluginClasspath"
@@ -42,9 +48,9 @@
 		<copy todir="${build.dir}">
 			<fileset dir="${src.dir}" includes="**/*.jpg,**/*.png,**/*.gif"/>
 		</copy>
-
 	</target>
 
+	<!-- Copy files and folders into respective directories -->
 	<target name="copyAll" depends="compile">
 		<copydir dest="${build.dir}/META-INF" src="${metainf.dir}"/>
 		<copydir dest="${build.dir}/icons" src="${icons.dir}"/>
@@ -56,6 +62,7 @@
 		</replace>
 	</target>
 
+	<!-- Create the plugin jar -->
 	<target name="createJar" depends="copyAll">
 		<jar destfile="${plugins.dir}/${ant.project.name}_${version.no}.${TODAY}.jar" 
 			basedir="${build.dir}" manifest="${build.dir}/META-INF/MANIFEST.MF">
