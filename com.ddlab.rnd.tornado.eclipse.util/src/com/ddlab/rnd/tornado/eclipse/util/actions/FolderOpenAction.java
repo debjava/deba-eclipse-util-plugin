@@ -107,7 +107,6 @@ public class FolderOpenAction implements IObjectActionDelegate {
 	 */
 	@Override
 	public void setActivePart(IAction arg0, IWorkbenchPart arg1) {
-		// TODO Auto-generated method stub
 
 	}
 

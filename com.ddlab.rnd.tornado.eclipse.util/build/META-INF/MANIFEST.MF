@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Util
 Bundle-SymbolicName: com.ddlab.rnd.tornado.eclipse.util; singleton:=true
-Bundle-Version: 1.0.0.201307051837
+Bundle-Version: 1.0.0.201307061322
 Bundle-Activator: com.ddlab.rnd.tornado.eclipse.util.Activator
 Bundle-Vendor: DDLAB
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

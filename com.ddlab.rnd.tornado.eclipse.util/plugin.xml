@@ -62,16 +62,14 @@
                enablesFor="+"
                id="folderopener1.FolderOpenAction">
          </action>
-         <!--
          <action
-               label="Send To Desktop"
-               icon="icons/desktop-icon16.png"
-               class="com.ddlab.rnd.tornado.eclipse.util.actions.CopytoDesktopAction"
+               label="Copy Files and Folders"
+               icon="icons/copy-icon16.png"
+               class="com.ddlab.rnd.tornado.eclipse.util.actions.CopyFilesFoldersAction"
                menubarPath="additions"
                enablesFor="+"
                id="folderopener1.FolderOpenAction">
          </action>
-         -->
       </objectContribution>
    </extension>
      <extension
@@ -194,6 +192,59 @@
               icon="icons/cmd16.ico" 
               tooltip="Open Command in Eclipse Console" 
               class="com.ddlab.rnd.tornado.eclipse.handlers.EclipseConsoleActionDelegate">
+	   </action>
+      </viewContribution>
+ </extension>
+ 
+ <!-- For Multi Copy Action -->
+ 
+ <!-- Copy Action for PackageExplorer View -->
+ <extension
+    point = "org.eclipse.ui.viewActions">
+      <viewContribution 
+         id="windows.command.id" 
+         targetID="org.eclipse.jdt.ui.PackageExplorer">        
+	   <action id="windows.console.action.id" 
+              label="Copy Files and Folders" 
+	      menubarPath="additions"
+              toolbarPath="additions" 
+              icon="icons/copy-icon16.png" 
+              tooltip="Copy Files and Folders" 
+              class="com.ddlab.rnd.tornado.eclipse.handlers.CopyFilesFoldersActionDelegate">
+	   </action>
+      </viewContribution>
+ </extension>
+ 
+ <!-- Copy Action for Project Explorer View -->
+ <extension
+    point = "org.eclipse.ui.viewActions">
+      <viewContribution 
+         id="windows.command.id" 
+         targetID="org.eclipse.ui.navigator.ProjectExplorer">        
+	   <action id="windows.console.action.id" 
+              label="Copy Files and Folders" 
+	      menubarPath="additions"
+              toolbarPath="additions" 
+              icon="icons/copy-icon16.png" 
+              tooltip="Copy Files and Folders" 
+              class="com.ddlab.rnd.tornado.eclipse.handlers.CopyFilesFoldersActionDelegate">
+	   </action>
+      </viewContribution>
+ </extension>
+ 
+ <!-- Copy Action for Naviagator View -->
+ <extension
+    point = "org.eclipse.ui.viewActions">
+      <viewContribution 
+         id="windows.command.id" 
+         targetID="org.eclipse.ui.views.ResourceNavigator">        
+	   <action id="windows.console.action.id" 
+              label="Copy Files and Folders" 
+	      menubarPath="additions"
+              toolbarPath="additions" 
+              icon="icons/copy-icon16.png" 
+              tooltip="Copy Files and Folders" 
+              class="com.ddlab.rnd.tornado.eclipse.handlers.CopyFilesFoldersActionDelegate">
 	   </action>
       </viewContribution>
  </extension>
